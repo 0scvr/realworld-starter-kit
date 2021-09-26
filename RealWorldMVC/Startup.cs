@@ -37,9 +37,9 @@ namespace RealWorldMVC
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
-            services.AddSingleton<IArticleService, InMemoryArticleService>();
-            services.AddSingleton<IUserService, InMemoryUserService>();
-            services.AddSingleton<ICommentService, InMemoryCommentService>();
+            services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICommentService, CommentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

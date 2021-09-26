@@ -9,7 +9,10 @@ namespace RealWorldMVC.Services
         Task<User[]> GetUsersAsync();
         Task<User> GetUserByIdAsync(Guid guid);
         Task<User> GetUserByUsernameAsync(string username);
-        Task<Comment[]> GetUserCommentsByUsernameAsync(string username);
+        //Task<Comment[]> GetUserCommentsByUsernameAsync(string username);
         Task<Article[]> GetUserArticlesByUsernameAsync(string username);
+
+        //Task<bool> CreateArticleAsync(Article article);
+
     }
 }

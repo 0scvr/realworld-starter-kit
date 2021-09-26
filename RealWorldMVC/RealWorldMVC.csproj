@@ -11,6 +11,8 @@
     <None Remove="Views\Settings\" />
     <None Remove="EntityFramework" />
     <None Remove="Services\" />
+    <None Remove="Views\Editor\" />
+    <None Remove="Slugify.Core" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -22,6 +24,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10" />
+    <PackageReference Include="Slugify.Core" Version="3.0.0" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
   </ItemGroup>
 
@@ -30,5 +33,6 @@
     <Folder Include="Views\Article\" />
     <Folder Include="Views\Settings\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\Editor\" />
   </ItemGroup>
 </Project>

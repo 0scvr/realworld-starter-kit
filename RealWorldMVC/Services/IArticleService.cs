@@ -9,5 +9,8 @@ namespace RealWorldMVC.Services
         Task<Article[]> GetArticlesAsync();
         Task<Article> GetArticleBySlugAsync(string slug);
         Task<Article[]> GetArticlesByAuthorIdAsync(Guid authorGuid);
+        Task<Article[]> GetArticlesByAuthorUsernameAsync(string username);
+
+        Task<bool> CreateArticleAsync(Article article);
     }
 }

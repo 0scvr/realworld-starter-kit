@@ -9,7 +9,7 @@ namespace RealWorldMVC.Models
         public string name { get; set; }
 
         //public virtual ICollection<Article> Articles { get; set; }
-
+        // Limit up to 5 tags per article to avoid overflow
         public Tag()
         {
         }
