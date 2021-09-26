@@ -19,7 +19,6 @@ namespace RealWorldMVC.Services
                 Title = "My first article",
                 Description = "lalalalalalal",
                 Body = "hjdjdhdjsdjjsdjhds dsjdsjkdsjksd",
-                TagList = new[] { "hello", "world" },
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 AuthorId = Guid.Empty
@@ -31,7 +30,6 @@ namespace RealWorldMVC.Services
                 Title = "My second article",
                 Description = "lalalalalalal",
                 Body = "hjdjdhdjsdjjsdjhds dsjdsjkdsjksd",
-                TagList = new[] { "hello" },
                 CreatedAt = DateTime.Now.AddHours(-1),
                 UpdatedAt = DateTime.Now.AddHours(-1),
                 AuthorId = Guid.Empty
