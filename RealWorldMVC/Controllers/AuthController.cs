@@ -111,6 +111,7 @@ namespace RealWorldMVC.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

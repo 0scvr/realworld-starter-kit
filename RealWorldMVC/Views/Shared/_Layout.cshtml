@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,7 +23,9 @@
                     <!-- Add "active" class when you're on that page" -->
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
-                @*<li class="nav-item">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item">
                         <a class="nav-link" asp-controller="Editor" asp-action="Index">
                             <i class="ion-compose"></i>&nbsp;New Post
                         </a>
@@ -28,13 +34,17 @@
                         <a class="nav-link" asp-controller="Settings" asp-action="Index">
                             <i class="ion-gear-a"></i>&nbsp;Settings
                         </a>
-                    </li>*@
-                <li class="nav-item">
-                    <a asp-action="Login" asp-controller="Auth" class="nav-link">Sign in</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-action="Register" asp-controller="Auth" class="nav-link">Sign up</a>
-                </li>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a asp-action="Login" asp-controller="Auth" class="nav-link">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Register" asp-controller="Auth" class="nav-link">Sign up</a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>

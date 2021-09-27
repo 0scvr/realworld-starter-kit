@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealWorldMVC.Models;
 using RealWorldMVC.Services;
 
 namespace RealWorldMVC.Controllers
 {
+    [Authorize]
     public class EditorController : Controller
     {
         private readonly IArticleService _articleService;
