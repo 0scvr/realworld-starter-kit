@@ -1,0 +1,48 @@
+﻿@model UserRegistrationDto
+@{
+}
+
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign up</h1>
+                <p class="text-xs-center">
+                    <a asp-action="Login" asp-controller="Auth">Have an account?</a>
+                </p>
+
+                <ul class="error-messages">
+                    @if (ViewData.ModelState["Username"] != null && ViewData.ModelState["Username"].Errors.Any())
+                    {
+                        <li>@Html.ValidationMessageFor(m => m.Username)</li>
+                    }
+                    @if (ViewData.ModelState["Email"] != null && ViewData.ModelState["Email"].Errors.Any())
+                    {
+                        <li>@Html.ValidationMessageFor(m => m.Email)</li>
+                    }
+                    @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Any())
+                    {
+                        <li>@Html.ValidationMessageFor(m => m.Password)</li>
+                    }
+                </ul>
+
+                <form asp-action="Register" asp-controller="Auth" method="POST">
+                    <fieldset class="form-group">
+                        <input asp-for="Username" class="form-control form-control-lg" type="text" placeholder="Username">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input asp-for="Email" class="form-control form-control-lg" type="text" placeholder="Email">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input asp-for="Password" class="form-control form-control-lg" type="password" placeholder="Password">
+                    </fieldset>
+                    <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+                        Sign up
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

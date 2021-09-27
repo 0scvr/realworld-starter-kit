@@ -1,0 +1,44 @@
+﻿@model User
+@{
+}
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign in</h1>
+                <p class="text-xs-center">
+                    <a asp-action="Register" asp-controller="Auth">Need an account?</a>
+                </p>
+
+                <ul class="error-messages">
+                    @if (ViewData.ModelState["ErrorMsg"] != null && ViewData.ModelState["ErrorMsg"].Errors.Any())
+                    {
+                        <li>@Html.ValidationMessage("ErrorMsg")</li>
+                    }
+                    @if (ViewData.ModelState["Email"] != null && ViewData.ModelState["Email"].Errors.Any())
+                    {
+                        <li>@Html.ValidationMessageFor(m => m.Email)</li>
+                    }
+                    @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Any())
+                    {
+                        <li>@Html.ValidationMessageFor(m => m.Password)</li>
+                    }
+                </ul>
+
+                <form asp-action="Login" asp-controller="Auth" method="POST">
+                    <fieldset class="form-group">
+                        <input asp-for="Email" class="form-control form-control-lg" type="text" placeholder="Email">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input asp-for="Password" class="form-control form-control-lg" type="password" placeholder="Password">
+                    </fieldset>
+                    <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+                        Sign in
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
