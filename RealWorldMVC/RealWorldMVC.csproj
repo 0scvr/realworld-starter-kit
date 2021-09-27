@@ -13,6 +13,7 @@
     <None Remove="Services\" />
     <None Remove="Views\Editor\" />
     <None Remove="Slugify.Core" />
+    <None Remove="Views\Auth\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -34,5 +35,6 @@
     <Folder Include="Views\Settings\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Editor\" />
+    <Folder Include="Views\Auth\" />
   </ItemGroup>
 </Project>
