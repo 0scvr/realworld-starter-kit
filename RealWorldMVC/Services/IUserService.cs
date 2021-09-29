@@ -6,9 +6,9 @@ namespace RealWorldMVC.Services
 {
     public interface IUserService
     {
-        Task<User[]> GetUsersAsync();
-        Task<User> GetUserByIdAsync(Guid guid);
-        Task<User> GetUserByUsernameAsync(string username);
+        Task<AppUser[]> GetUsersAsync();
+        Task<AppUser> GetUserByIdAsync(Guid guid);
+        Task<AppUser> GetUserByUsernameAsync(string username);
         //Task<Comment[]> GetUserCommentsByUsernameAsync(string username);
         Task<Article[]> GetUserArticlesByUsernameAsync(string username);
 

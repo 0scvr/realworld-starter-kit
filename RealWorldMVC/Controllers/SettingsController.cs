@@ -4,16 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using RealWorldMVC.Models;
 
 namespace RealWorldMVC.Controllers
 {
     [Authorize]
     public class SettingsController : Controller
     {
-        // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
+        {
+            return View(); // inject current user or DTO in this view
+        }
+
+        [HttpPost]
+        public IActionResult Index(AppUser profile)
         {
             return View();
         }

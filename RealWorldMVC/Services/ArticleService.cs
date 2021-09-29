@@ -35,21 +35,27 @@ namespace RealWorldMVC.Services
 
         public async Task<Article[]> GetArticlesByAuthorUsernameAsync(string username)
         {
-            return await _context.Articles.Where(a => a.Author.Username == username).ToArrayAsync();
+            return await _context.Articles.Where(a => a.Author.UserName == username).ToArrayAsync();
         }
 
-        public async Task<bool> CreateArticleAsync(Article article)
+        public async Task<string> CreateArticleAsync(NewOrEditArticleDto articleDto)
         {
             var now = DateTime.Now;
-            article.Id = Guid.NewGuid();
-            article.CreatedAt = now;
-            article.UpdatedAt = now;
-            article.AuthorId = Guid.Empty;
-            article.Slug = slugHelper.GenerateSlug(article.Title);
+            var slug = slugHelper.GenerateSlug(articleDto.Title);
+            Article article = new()
+            {
+                CreatedAt = now,
+                AuthorId = articleDto.AuthorId,
+                Slug = slug,
+                Body = articleDto.Body,
+                Description = articleDto.Description,
+                Title = articleDto.Title
+            };
+
             _context.Articles.Add(article);
 
             var saveResult = await _context.SaveChangesAsync();
-            return saveResult == 1;
+            return saveResult == 1 ? slug : null;
         }
     }
 }

@@ -13,9 +13,9 @@ namespace RealWorldMVC.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -24,18 +24,18 @@ namespace RealWorldMVC.Controllers
         [HttpGet, AllowAnonymous]
         public IActionResult Register()
         {
-            return View(new UserRegistrationDto());
+            return View(new RegisterDto());
         }
 
         [HttpPost, AllowAnonymous]
-        public async Task<IActionResult> Register(UserRegistrationDto registrationDto)
+        public async Task<IActionResult> Register(RegisterDto registrationDto)
         {
             if (ModelState.IsValid)
             {
-                IdentityUser userIdentity = await _userManager.FindByEmailAsync(registrationDto.Email);
+                AppUser userIdentity = await _userManager.FindByEmailAsync(registrationDto.Email);
                 if (userIdentity == null)
                 {
-                    IdentityUser user = new IdentityUser
+                    AppUser user = new AppUser
                     {
                         UserName = registrationDto.Username,
                         Email = registrationDto.Email,
@@ -61,7 +61,7 @@ namespace RealWorldMVC.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("message", "Email already exists.");
+                    ModelState.AddModelError("message", "Email already exists");
                     return View(registrationDto);
                 }
             }
@@ -71,44 +71,43 @@ namespace RealWorldMVC.Controllers
         [HttpGet, AllowAnonymous]
         public IActionResult Login()
         {
-            //UserLoginDto model = new UserLoginDto();
-            return View(new User());
+            return View(new SignInDto());
         }
 
         [HttpPost, AllowAnonymous]
-        public async Task<IActionResult> Login(User model)
+        public async Task<IActionResult> Login(SignInDto signInDto)
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(model.Email);
+                var user = await _userManager.FindByEmailAsync(signInDto.Email);
                 if (user != null && !user.EmailConfirmed)
                 {
                     ModelState.AddModelError("ErrorMsg", "Email not confirmed yet");
-                    return View(model);
+                    return View(signInDto);
 
                 }
-                if (await _userManager.CheckPasswordAsync(user, model.Password) == false)
+                if (await _userManager.CheckPasswordAsync(user, signInDto.Password) == false)
                 {
                     ModelState.AddModelError("ErrorMsg", "Invalid credentials");
-                    return View(model);
+                    return View(signInDto);
 
                 }
 
-                var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, signInDto.Password, false, false);
                 //var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
                 if (result.Succeeded)
                 {
                     await _userManager.AddClaimAsync(user, new Claim("UserRole", "RegularUser"));
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     ModelState.AddModelError("ErrorMsg", "Invalid login attempt");
-                    return View(model);
+                    return View(signInDto);
                 }
             }
-            return View(model);
+            return View(signInDto);
         }
 
         [Authorize]

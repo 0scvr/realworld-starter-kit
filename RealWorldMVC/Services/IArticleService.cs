@@ -11,6 +11,6 @@ namespace RealWorldMVC.Services
         Task<Article[]> GetArticlesByAuthorIdAsync(Guid authorGuid);
         Task<Article[]> GetArticlesByAuthorUsernameAsync(string username);
 
-        Task<bool> CreateArticleAsync(Article article);
+        Task<string> CreateArticleAsync(NewOrEditArticleDto articleDto);
     }
 }

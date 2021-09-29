@@ -14,7 +14,7 @@ namespace RealWorldMVC.Controllers
 
         public ArticleController(IArticleService articleService) => _articleService = articleService;
 
-        [HttpGet("{slug}")]
+        [HttpGet("{slug}")] //add /article before {slug} ?
         public async Task<IActionResult> Index(string slug)
         {
             Article article = await _articleService.GetArticleBySlugAsync(slug);

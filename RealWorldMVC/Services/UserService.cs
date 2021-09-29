@@ -17,21 +17,21 @@ namespace RealWorldMVC.Services
 
         public async Task<Article[]> GetUserArticlesByUsernameAsync(string username)
         {
-            return await _context.Articles.Where(a => a.Author.Username == username).ToArrayAsync();
+            return await _context.Articles.Where(a => a.Author.UserName == username).ToArrayAsync();
         }
 
-        public async Task<User> GetUserByIdAsync(Guid guid)
+        public async Task<AppUser> GetUserByIdAsync(Guid guid)
         {
             return await _context.AppUsers.Where(u => u.Id == guid).SingleAsync();
         }
 
-        public async Task<User> GetUserByUsernameAsync(string username)
+        public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
-            return await _context.AppUsers.Where(u => u.Username == username).SingleAsync();
+            return await _context.AppUsers.Where(u => u.UserName == username).SingleAsync();
         }
 
 
-        public async Task<User[]> GetUsersAsync()
+        public async Task<AppUser[]> GetUsersAsync()
         {
             return await _context.AppUsers.ToArrayAsync();
         }

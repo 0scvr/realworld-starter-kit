@@ -1,4 +1,4 @@
-﻿@model UserRegistrationDto
+﻿@model RegisterDto
 @{
 }
 
@@ -13,6 +13,10 @@
                 </p>
 
                 <ul class="error-messages">
+                    @if (ViewData.ModelState["message"] != null && ViewData.ModelState["message"].Errors.Any())
+                    {
+                        <li>@Html.ValidationMessage("ErrorMsg")</li>
+                    }
                     @if (ViewData.ModelState["Username"] != null && ViewData.ModelState["Username"].Errors.Any())
                     {
                         <li>@Html.ValidationMessageFor(m => m.Username)</li>
@@ -30,6 +34,7 @@
                 <form asp-action="Register" asp-controller="Auth" method="POST">
                     <fieldset class="form-group">
                         <input asp-for="Username" class="form-control form-control-lg" type="text" placeholder="Username">
+                        @*<span asp-validation-for="Username" class="text-danger"></span>*@
                     </fieldset>
                     <fieldset class="form-group">
                         <input asp-for="Email" class="form-control form-control-lg" type="text" placeholder="Email">

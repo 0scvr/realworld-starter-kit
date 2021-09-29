@@ -17,7 +17,8 @@ namespace RealWorldMVC.Controllers
             _userService = userService;
         }
 
-        public async Task<IActionResult> Index(string username)
+        [HttpGet("{username}")] //add /profile before {slug} ?
+                public async Task<IActionResult> Index(string username)
         {
             //if (id == null)
             //{

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RealWorldMVC.Models
 {
     public class Tag
     {
         public Guid Id { get; set; }
-        public string name { get; set; }
 
-        //public virtual ICollection<Article> Articles { get; set; }
-        // Limit up to 5 tags per article to avoid overflow
+        [Required]
+        public string name { get; set; }
+        public ICollection<Article> Articles { get; set; }
+
         public Tag()
         {
         }
